@@ -1,7 +1,25 @@
 package com.craftinginterpreters.lox;
-class AstPrinter implements Expr.Visitor<String> {
+class AstPrinter implements Expr.Visitor<String>, Stmt.Visitor<String> {
   String print(Expr expr) {
     return expr.accept(this);
+  }
+  @Override
+  public String visitVariableExpr(Expr.Variable expr) {
+    return expr.name.literal.toString();
+  }
+
+  @Override
+  public String visitVarStmt(Stmt.Var stmt) {
+    return parenthesize(stmt.name.literal.toString(), stmt.initializer);
+  }
+
+  @Override
+  public String visitPrintStmt(Stmt.Print stmt) {
+    return parenthesize("print ", stmt.expression);
+  }
+  @Override
+  public String visitExpressionStmt(Stmt.Expression expression) {
+    return parenthesize("ExpressionStmt ", expression.expression);
   }
   @Override
   public String visitBinaryExpr(Expr.Binary expr) {
