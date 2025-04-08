@@ -4,6 +4,20 @@ class AstPrinter implements Expr.Visitor<String>, Stmt.Visitor<String> {
     return expr.accept(this);
   }
   @Override
+  public String visitFunctionStmt(Stmt.Function stmt) {
+    StringBuilder b = new StringBuilder();
+    b.append("(");
+    b.append(stmt.name.lexeme);
+    for (Token t : stmt.params) {
+      b.append(", ");
+      b.append(t.lexeme);
+    }
+    b.append(", ");
+    b.append(visitBlockStmt(new Stmt.Block(stmt.body)));
+    b.append(")");
+    return b.toString();
+  }
+  @Override
   public String visitCallExpr(Expr.Call expr) {
     StringBuilder b = new StringBuilder();
     b.append("(");
