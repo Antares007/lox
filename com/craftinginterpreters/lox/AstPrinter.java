@@ -4,6 +4,16 @@ class AstPrinter implements Expr.Visitor<String>, Stmt.Visitor<String> {
     return expr.accept(this);
   }
   @Override
+  public String visitWhileStmt(Stmt.While stmt) {
+    StringBuilder builder = new StringBuilder();
+    builder.append("(while, ");
+    builder.append(stmt.condition.accept(this));
+    builder.append(", ");
+    builder.append(stmt.body.accept(this));
+    builder.append(")");
+    return builder.toString();
+  }
+  @Override
   public String visitLogicalExpr(Expr.Logical expr) {
     return parenthesize(expr.operator.lexeme, expr.left, expr.right);
   }

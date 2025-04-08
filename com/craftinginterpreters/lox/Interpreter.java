@@ -13,6 +13,13 @@ class Interpreter implements  Expr.Visitor<Object>,
     }
   }
   @Override
+  public Void visitWhileStmt(Stmt.While stmt) {
+    while (isTruthy(evaluate(stmt.condition))) {
+      execute(stmt.body);
+    }
+    return null;
+  }
+  @Override
   public Object visitLogicalExpr(Expr.Logical expr) {
     Object left = evaluate(expr.left);
     if (expr.operator.type == TokenType.OR) {
