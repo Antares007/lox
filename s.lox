@@ -18,3 +18,13 @@ print a;
 print b;
 print c;
 
+{
+  var a = 1;
+  {
+    var a = a + 2;
+    if(a != 3)
+      print a;
+    else
+      print "it(a) is three";
+  } 
+}
