@@ -4,6 +4,18 @@ class AstPrinter implements Expr.Visitor<String>, Stmt.Visitor<String> {
     return expr.accept(this);
   }
   @Override
+  public String visitCallExpr(Expr.Call expr) {
+    StringBuilder b = new StringBuilder();
+    b.append("(");
+    b.append(expr.callee.accept(this));
+    for (Expr argument : expr.arguments) {
+      b.append(", ");
+      b.append(argument.accept(this));
+    }
+    b.append(")");
+    return b.toString();
+  }
+  @Override
   public String visitWhileStmt(Stmt.While stmt) {
     StringBuilder builder = new StringBuilder();
     builder.append("(while, ");
