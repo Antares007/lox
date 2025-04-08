@@ -4,6 +4,10 @@ class AstPrinter implements Expr.Visitor<String>, Stmt.Visitor<String> {
     return expr.accept(this);
   }
   @Override
+  public String visitLogicalExpr(Expr.Logical expr) {
+    return parenthesize(expr.operator.lexeme, expr.left, expr.right);
+  }
+  @Override
   public String visitIfStmt(Stmt.If stmt) {
     StringBuilder builder = new StringBuilder();
     builder.append("(if, ");
