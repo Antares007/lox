@@ -21,7 +21,8 @@ print c;
 {
   var a = 1;
   {
-    var a = a + 2;
+    var t = a;
+    var a = t + 2;
     if(a != 3)
       print a;
     else
