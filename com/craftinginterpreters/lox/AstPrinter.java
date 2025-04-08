@@ -4,6 +4,10 @@ class AstPrinter implements Expr.Visitor<String>, Stmt.Visitor<String> {
     return expr.accept(this);
   }
   @Override
+  public String visitReturnStmt(Stmt.Return stmt) {
+    return parenthesize("return ", stmt.value);
+  }
+  @Override
   public String visitFunctionStmt(Stmt.Function stmt) {
     StringBuilder b = new StringBuilder();
     b.append("(");
