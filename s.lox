@@ -87,8 +87,11 @@ class Bacon {
 Bacon().eat(); // Prints "Crunch crunch crunch!".
 
 class Egotist {
+  init() {
+    this.name = "Egoist";
+  }
   speak() {
-    print this;
+    print this.name;
   }
 }
 var method = Egotist().speak;
