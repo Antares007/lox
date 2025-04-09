@@ -75,3 +75,5 @@ print DevonshireCream;
 class Bagel {}
 var bagel = Bagel();
 print bagel; // Prints "Bagel instance".
+bagel.prop = "ka";
+print bagel.prop;

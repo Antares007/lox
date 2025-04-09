@@ -3,9 +3,30 @@ class AstPrinter implements Expr.Visitor<String>, Stmt.Visitor<String> {
   String print(Expr expr) {
     return expr.accept(this);
   }
+
+  @Override
+  public String visitSetExpr(Expr.Set expr) {
+    StringBuilder b = new StringBuilder();
+    b.append("(=");
+    b.append(", ");
+    b.append(expr.object.accept(this));
+    b.append(", ");
+    b.append(expr.name.lexeme);
+    b.append(", ");
+    b.append(expr.value.accept(this));
+    b.append(")");
+    return b.toString();
+  }
   @Override
   public String visitGetExpr(Expr.Get expr) {
-    return parenthesize(".", expr);
+    StringBuilder b = new StringBuilder();
+    b.append("(.");
+    b.append(", ");
+    b.append(expr.object.accept(this));
+    b.append(", ");
+    b.append(expr.name.lexeme);
+    b.append(")");
+    return b.toString();
   }
   @Override
   public String visitClassStmt(Stmt.Class stmt) {
