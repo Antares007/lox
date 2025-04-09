@@ -77,3 +77,11 @@ var bagel = Bagel();
 print bagel; // Prints "Bagel instance".
 bagel.prop = "ka";
 print bagel.prop;
+
+
+class Bacon {
+  eat() {
+    print "Crunch crunch crunch!";
+  }
+}
+Bacon().eat(); // Prints "Crunch crunch crunch!".
