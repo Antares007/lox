@@ -12,6 +12,7 @@ public class Lox {
   static boolean hadError = false;
   static boolean hadRuntimeError = false;
   public static void main(String[] args) throws IOException {
+    System.out.println("jlox");
     if (args.length > 1) {
       System.out.println("Usage: jlox [script]");
       System.exit(64);
